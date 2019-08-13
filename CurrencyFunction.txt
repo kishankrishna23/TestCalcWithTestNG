@@ -1,0 +1,21 @@
+package com.pom;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class CurrencyFunction  extends CommandsRepository{
+		By amount = By.id("amount");
+		By btn = By.xpath("//button[@type='submit']");
+		By cur = By.xpath("//*[@id=\"to\"]");
+	
+		
+
+	public void Check(WebDriver browser, String url,String Cur ,String value) {
+		OpenWebPage(browser, url);
+		Input(browser, amount, value);	
+		InputCur(browser, cur, Cur);
+		Click(browser, btn);
+		
+	}
+}
+

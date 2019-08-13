@@ -1,0 +1,42 @@
+package com.pom;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class ExecuteRegression {
+		
+		CurrencyFunction crfn = new CurrencyFunction();
+		WebDriver browser;
+		
+		@BeforeMethod
+		public void setup() {
+			System.setProperty("webdriver.chrome.driver","driver/chromedriver.exe");
+			browser = new ChromeDriver();
+			browser.manage().window().maximize();
+		}
+		
+		@Test(dataProvider="getData")
+		public void TestCurrencyFunction(String url,String Cur, String amount) {
+			
+			crfn.Check(browser, url, Cur ,amount);
+			
+		}
+		
+		@AfterMethod
+		public void CloseBrowser() {
+			browser.close();		
+		}
+
+		@DataProvider
+		public Object[][] getData() {
+			return new Object[][] {
+				new Object[] {"https://www.xe.com/currencyconverter/","LKR","200"},
+				new Object[] {"https://www.xe.com/currencyconverter/","INR","1000"},
+				new Object[] {"https://www.xe.com/currencyconverter/","EUR","650"}
+			};
+		}
+}

@@ -1,0 +1,27 @@
+package com.pom;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+
+public class CommandsRepository {
+	public void OpenWebPage(WebDriver browser, String url) {
+		browser.get(url);
+	}
+	
+	public void Input(WebDriver browser, By element, String value) {
+		browser.findElement(element).sendKeys(value);
+	}
+	
+	public void InputCur(WebDriver browser, By element, String value) {
+		browser.findElement(element).click();
+		browser.findElement(element).sendKeys(value);
+		browser.findElement(element).sendKeys(Keys.ENTER);
+		
+	}
+	
+	public void Click(WebDriver browser, By element) {
+		browser.findElement(element).click();
+	}
+}
